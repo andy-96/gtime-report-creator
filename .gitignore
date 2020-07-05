@@ -1,0 +1,5 @@
+.vscode
+__pycache__
+secrets.py
+/venv
+/kivy_venv
