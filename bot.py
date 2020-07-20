@@ -4,11 +4,12 @@ from time import sleep
 from selenium.webdriver.common.keys import Keys
 import datetime
 import time
-
-from secrets import username, password
+from dotenv import load_dotenv
+import os
 
 class GTimeReportBot():
   def __init__(self):
+    load_dotenv()
     self.driver = webdriver.Chrome(ChromeDriverManager().install())
 
   def login(self):
@@ -25,16 +26,16 @@ class GTimeReportBot():
 
     # type in mail and send it
     email_in = self.driver.find_element_by_xpath('//*[@id="identifierId"]')
-    email_in.send_keys(username)
-    cont_btn = self.driver.find_element_by_xpath('//*[@id="identifierNext"]/div/span/span')
+    email_in.send_keys(os.getenv("NAME"))
+    cont_btn = self.driver.find_element_by_xpath('//*[@id="identifierNext"]/div/button/div[2]')
     cont_btn.click()
 
     sleep(2)
 
     # type in password and send it
     pw_in = self.driver.find_element_by_xpath('//*[@id="password"]/div[1]/div/div[1]/input')
-    pw_in.send_keys(password)
-    pw_btn = self.driver.find_element_by_xpath('//*[@id="passwordNext"]/div/span/span')
+    pw_in.send_keys(os.getenv("PASSWORD"))
+    pw_btn = self.driver.find_element_by_xpath('//*[@id="passwordNext"]/div/button/div[2]')
     pw_btn.click()
   
   def clickOnBoxes(self):
